@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package chat.v1;
+
+option go_package = "chat/v1";
+
+message User {
+    string id = 1;  // user id
+    string display_name = 2;    // user name
+}
+
+message Message {
+    string id = 1;  // message id
+    User user = 2;  // sender
+    string message = 3; // message content
+    string timestamp = 4;   // message was sent at what time
+}
+
+message ConnectRequest {
+    string display_name = 1;
+}
+
+service ChatService {
+    rpc Connect (ConnectRequest) returns (User);
+}
